@@ -16,3 +16,12 @@ Output a single line giving the earliest legal date possible given the above con
 Sample input 1   Sample output 1
 02/4/67   ------->  2067-02-04
 31/9/73   ------->  31/9/73 is illegal
+
+
+Comment
+The main idea is, put the three input digit in an array with size of three, 
+and to validate all the possible combination of the three digits until it is an valid date array(year/month/date).
+When doing the validating, order from the least to greatest. 
+eg. let array as: 2/1/3, least should be 1/2/3, greatest should be 3/2/1
+    let array as: 12/4/2, least should be 2/4/12, greatest should be 12/4/2
+
