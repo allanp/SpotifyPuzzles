@@ -2,6 +2,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
+#define OS_INLINE #if defined(_MSC_VER)\
+__inline \
+#elif\
+inline\
+#endif\
+\
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,9 +26,10 @@ const int max_month = 12;
 const int max_day = 31;
 const int days[12] = {0, -3, 0, -1, 0, -1, 0, 0, -1, 0, -1, 0 }; // days ref to 31
 // returns 1 if it is leap, otherwise, return 0
-__inline const int is_leap_year(int year){ return (year % 4 > 0) || ( year % 100 == 0 && year % 400 > 0) ? 0 : 1; }
 
-__inline const int is_valid_date(int year, int month, int day){
+const int is_leap_year(int year){ return (year % 4 > 0) || ( year % 100 == 0 && year % 400 > 0) ? 0 : 1; }
+
+OS_INLINE const int is_valid_date(int year, int month, int day){
 	year += (year <= mmin_year) ? min_year : 0;
 	return (year >= min_year && month > 0 && day > 0) && 
 		   (year <= max_year && month <= max_month) && 
